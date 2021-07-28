@@ -7,8 +7,8 @@ py_scrolly is a python script that provides a graphical and musical desktop toy.
 ## Dependencies:
 
 py_scrolly uses the following external modules:
-pygame – v2.0.1
-numpy – v1.1.5
+- pygame – v2.0.1
+- numpy – v1.20.3
 
 These modules can be installed using pip, if needed:
 
