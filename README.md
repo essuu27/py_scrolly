@@ -26,7 +26,7 @@ Using py_scrolly is pretty easy to do. Provided the module dependencies are inst
 
 ….but you knew that already, right?
 
-On starting up, py_scrolly will open a window on your system’s desktop *[1]* showing a line of text scrolling, right to left, across the screen. When the live of text scrolls off the left-hand end of the screen the next line of text will start scrolling, right to left, across the screen.
+On starting up, py_scrolly will open a window *[1]* on your system’s desktop showing a line of text scrolling, right to left, across the screen. When the line of text scrolls off the left-hand end of the screen the next line of text will start scrolling, right to left, across the screen.
 
 *[1]*: While the py_scrolly.py can provide a fullscreen display it is designed to start up with windowed output. Pressing the ‘f’ key kicks the output into, and out of fullscreen mode.
 
