@@ -65,15 +65,15 @@ If the message.txt file is not present in the same directory as the py_scrolly s
 
 ## MP3 file:
 
-The music file that is included with the py_scrolly.py script is called “Mellow strain”. It is an MP3  transcoding of a MOD-format file that was produced by the artist and long time collaborator and friend U4iaF8. It has been included in the release of the py_scrolly.py script with his permission. More of U4iaF8’s work is available for download from https://modarchive.org/index.php?request=view_profile&query=69242
+The music file that is included with the py_scrolly.py script is called “Mellow strain”. It is an MP3  transcoding of a MOD-format file that was produced by the artist and long time collaborator and friend, U4iaF8. It has been included in the release of the py_scrolly.py script with his permission. More of U4iaF8’s work is available for download from https://modarchive.org/index.php?request=view_profile&query=69242 . Maybe go and show his output some love, it'll be well worth it!
 
 The py_scrolly script is written so that it will play the first MP3 file that it finds in its current working directory. The user can play any MP3 file that they choose by putting the file into the directory with the py_scrolly.py script.
 
-Please note: the py_scrolly script will play the FIRST MP3 file that it discovers in this directory. So an MP3 file with a filename that appears lower down a directory listing will be ignored. The user can either remove the mellow_strains.mp3 file or give their own MP3 file a name that starts with a letter in the range A-l.
+**Please note:** the py_scrolly script will play the **FIRST** MP3 file that it discovers in this directory. So an MP3 file with a filename that appears lower down a directory listing will be ignored. The user can either remove the mellow_strain.mp3 file or give their own MP3 file a name that starts with a letter in the range A-l.
 
 ## Displayed message font:
 
-The TrueType font file included with the py_scrolly.py script is called |Rubik. It is available on an Open Fonts Licence which allows the font to be used freely in products. It can be downloaded from https://fonts.google.com/specimen/Rubik
+The TrueType font file included with the py_scrolly script is called Rubik. It is available on an Open Fonts Licence which allows the font to be used freely in products. It can be downloaded from [Google Fonts] (https://fonts.google.com/specimen/Rubik)
 
 ## The PyGame module:
 
@@ -85,13 +85,13 @@ py_scrolly uses the latest version of PyGame, which is currently V2.0.1 .
 
 
 ### Notes
-This is a learning project for me. I just couldn't face having to write yet another 'Hello world!' script to get started on a new language.
+This is a learning project for me. I just couldn't face having to write yet another 'Hello world!' script to get started on a new language. I've previously mangled a few python scripts (usually downloaded) that were a couple of lines long to do fairly mundane operations. This is my *first* full 'proper' python script. As such, I'm willing to admit that there *may* be some 'oversights'! :D
 
 The initial targets for this script were just to get a python script up and running and, to see if I could get it to open a window on the screen. Once those targets were met, the design targets expanded. Below are some of the features I was aiming to incorporate in the code:
 
 - [x] Multiple lines of differing text scrolling across a screen
 - [x] Initial text effects are to "slide" the text across the screen and, to make the text follow a "sinus"
-- [x] Make it so the script can autoload new 'effects' when it is run
+- [x] Make it so the script can autoload new 'effects' when it is starts up
 - [x] Provide a shifting backdrop filled with stars
 - [x] Add stars streaming from the visual centre of the scene
 - [x] Make it easy to change the text that is being scrolled on the screen
