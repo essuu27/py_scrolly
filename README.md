@@ -55,7 +55,7 @@ The options are, as follow:
 
 There are some options available to the user to change the operation of the py_scrolly script.
 
-The main changes are that the user can set the message lines that scroll across the screen. These are held in the message.txt file which is a plaintext file. The lines read from this file are displayed to screen in a rolling FIFO fashion so. The script displays each line of text, one at a time. When it reaches the end of the message lines it starts again with the first line.
+The main changes are that the user can set the message lines that scroll across the screen. These are held in the message.txt file which is a plaintext file. The lines read from this file are displayed to screen in a rolling FIFO fashion. The script displays each line of text, one at a time. When it reaches the end of the message lines it starts again with the first line.
 
 The change of graphical text effect is triggered when the py_scrolly script reaches the end of the line it is currently displaying. Whole paragraphs or a single letter can be made to scroll across the screen, being displayed with the current selected effect.
 
