@@ -49,7 +49,7 @@ The options are, as follow:
 | f | flip the program between windowed and fullscreen view |
 | m | mute, or unmute the music file that is playing |
 | backspace | Hide or reveal the on-screen menu |
-|spacebar | pressing the spacebar will pause or resume the scrolling of the text across the screen. This does not affect the background animations or the playing of music|
+|spacebar | pause or resume the scrolling of the text across the screen. This does not affect the background animations or the playing of music|
 
 ## The message.txt file:
 
