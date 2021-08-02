@@ -20,8 +20,6 @@ import time
 import config
 import sys
 
-# effectsmods is a list to hold the module descriptors.
-effectmods = []
 
 # Load in 'built-in' text effects. The modnames array lists the effects always to be included.
 modnames = ('01_sinus', '02_slider')
@@ -82,13 +80,13 @@ def footer(my_canvas, font2):
 # main() starts here. Did this really need commenting?
 def main():
     """This is where all the action kicks off"""
-    # Go through the modnames array
-    for modname in modnames:
-        # Import the 'modname' module
-        mymod = importlib.import_module(modname, package='effects')
-        # After the module's descriptor/handle to the effectmods array, to be used later.
-        effectmods.append(mymod)
-
+    
+    # Go through the modnames array    
+    # Import the 'modname' module
+    # After the module's descriptor/handle to the effectmods array, to be used later.
+    effectmods = [importlib.import_module(modname, package='effects')
+        for modname in modnames]
+    
     # The 'effects' directory holds any 'extra' text effects. Find them
     # and load them dynamically.
     # Get the fullpath for the 'effects' subdirectory
@@ -97,20 +95,18 @@ def main():
     # Does the 'effects' directory exist?
     if os.path.isdir(my_effdir):
 
-        # List all the effects files in my_cwd.
-        for fname in os.listdir(my_effdir):
+        # Is it a '.py' file? OK, I could've done this with glob() but....
+        valid_fnames = filter(lambda fname: fname.endswith('.py'),
+            os.listdir(my_effdir))
 
-            # Is it a '.py' file? OK, I could've done this with glob() but....
-            if fname.endswith('.py'):
-                # OK, make up the module name for importing
-                modname = fname[:-3]
-                # Stick a period (.) at the start of the module name.
-                modname = f".{modname}"
-
-                # Now, import that puppy!!!!
-                mymod = importlib.import_module(modname, package='effects')
-                # Add the imported module's descriptor to the effectmods array.
-                effectmods.append(mymod)
+        # OK, make up the module name for importing
+        # Stick a period (.) at the start of the module name.
+        effect_modnames = (f".{fname[:-3]}" for fname in valid_fnames)
+        
+        # Now, import that puppy!!!!
+        # Add the imported modules descriptor to the effectmods array.
+        effectmods += [importlib.import_module(modname, package='effects')
+            for modname in effect_modnames]
 
     # Initialise pygame
     pg.init()
@@ -121,14 +117,14 @@ def main():
     msg_file = 'message.txt'
 
     # Check that the message.txt file exists
-    if os.path.exists(msg_file):
+    try:
         # If the 'message.txt' file exists, open it and, read it into msg_lines array.
         with open(msg_file) as f:
             msg_lines = f.read().splitlines()
-    else:
+    except:
         # ERROR! No message.txt file. Danger, Will Robinson! Carp about it.
         msg_lines = ['message.txt file not found. Oops!']
-
+        
     # Get fullscreen info
     screen_info = pg.display.Info()
     # Set up the starting draw surface
@@ -137,12 +133,8 @@ def main():
     my_canvas = screen.copy()
 
     # Generate a field of stars in the far background
-    back_stars = []
-    # Make up a cluster of 100 randomly generated stars.
-    for tmp_i in range(0, 101):
-        tmpx = int(random.random() * 600) - 75
-        tmpy = int(random.random() * 600) - 75
-        back_stars.append((tmpx, tmpy))
+    back_stars = [(int(random.random() * 600) - 75, int(random.random() * 600) - 75)
+        for _ in range(0, 101)]
 
     # Initialise pygame's music library, set the volume to be "not too loud!"
     mixer.init()
@@ -216,23 +208,14 @@ def main():
         my_canvas.fill((10, 10, 10))
 
         # Now paint the background stars onto the canvas
-        tmp_i = 0
-        while tmp_i < 100:
-            (tmpx, tmpy) = back_stars[tmp_i]
-            tmpx = tmpx + int(screen_x * 1.5)
-            if tmpx > 500:
-                tmpx = tmpx - 500
-            if tmpx < 1:
-                tmpx = tmpx + 500
-
-            tmpy = tmpy + int(screen_y * 1.5)
-            if tmpy > 500:
-                tmpy = tmpy - 500
-            if tmpy < 1:
-                tmpy = tmpy + 500
-
-            my_canvas.set_at((tmpx, tmpy), config.COLWHITE)
-            tmp_i += 1
+        for tmpx, tmpy in back_stars:
+            my_canvas.set_at(
+                (
+                    (tmpx + int(screen_x * 1.5)) % 500,
+                    (tmpy + int(screen_y * 1.5)) % 500,
+                ),
+                config.COLWHITE
+            )
 
         # Put the streaming stars onto the canvas
         my_canvas = starstream(my_canvas, screen_x, screen_y)
