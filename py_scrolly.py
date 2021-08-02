@@ -117,14 +117,14 @@ def main():
     msg_file = 'message.txt'
 
     # Check that the message.txt file exists
-    if os.path.exists(msg_file):
+    try:
         # If the 'message.txt' file exists, open it and, read it into msg_lines array.
         with open(msg_file) as f:
             msg_lines = f.read().splitlines()
-    else:
+    except:
         # ERROR! No message.txt file. Danger, Will Robinson! Carp about it.
         msg_lines = ['message.txt file not found. Oops!']
-
+        
     # Get fullscreen info
     screen_info = pg.display.Info()
     # Set up the starting draw surface
@@ -208,23 +208,14 @@ def main():
         my_canvas.fill((10, 10, 10))
 
         # Now paint the background stars onto the canvas
-        tmp_i = 0
-        while tmp_i < 100:
-            (tmpx, tmpy) = back_stars[tmp_i]
-            tmpx = tmpx + int(screen_x * 1.5)
-            if tmpx > 500:
-                tmpx = tmpx - 500
-            if tmpx < 1:
-                tmpx = tmpx + 500
-
-            tmpy = tmpy + int(screen_y * 1.5)
-            if tmpy > 500:
-                tmpy = tmpy - 500
-            if tmpy < 1:
-                tmpy = tmpy + 500
-
-            my_canvas.set_at((tmpx, tmpy), config.COLWHITE)
-            tmp_i += 1
+        for tmpx, tmpy in back_stars:
+            my_canvas.set_at(
+                (
+                    (tmpx + int(screen_x * 1.5)) % 500,
+                    (tmpy + int(screen_y * 1.5)) % 500,
+                ),
+                config.COLWHITE
+            )
 
         # Put the streaming stars onto the canvas
         my_canvas = starstream(my_canvas, screen_x, screen_y)
