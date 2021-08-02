@@ -20,8 +20,6 @@ import time
 import config
 import sys
 
-# effectsmods is a list to hold the module descriptors.
-effectmods = []
 
 # Load in 'built-in' text effects. The modnames array lists the effects always to be included.
 modnames = ('01_sinus', '02_slider')
@@ -82,13 +80,13 @@ def footer(my_canvas, font2):
 # main() starts here. Did this really need commenting?
 def main():
     """This is where all the action kicks off"""
-    # Go through the modnames array
-    for modname in modnames:
-        # Import the 'modname' module
-        mymod = importlib.import_module(modname, package='effects')
-        # After the module's descriptor/handle to the effectmods array, to be used later.
-        effectmods.append(mymod)
-
+    
+    # Go through the modnames array    
+    # Import the 'modname' module
+    # After the module's descriptor/handle to the effectmods array, to be used later.
+    effectmods = [importlib.import_module(modname, package='effects')
+        for modname in modnames]
+    
     # The 'effects' directory holds any 'extra' text effects. Find them
     # and load them dynamically.
     # Get the fullpath for the 'effects' subdirectory
@@ -97,20 +95,18 @@ def main():
     # Does the 'effects' directory exist?
     if os.path.isdir(my_effdir):
 
-        # List all the effects files in my_cwd.
-        for fname in os.listdir(my_effdir):
+        # Is it a '.py' file? OK, I could've done this with glob() but....
+        valid_fnames = filter(lambda fname: fname.endswith('.py'),
+            os.listdir(my_effdir))
 
-            # Is it a '.py' file? OK, I could've done this with glob() but....
-            if fname.endswith('.py'):
-                # OK, make up the module name for importing
-                modname = fname[:-3]
-                # Stick a period (.) at the start of the module name.
-                modname = f".{modname}"
-
-                # Now, import that puppy!!!!
-                mymod = importlib.import_module(modname, package='effects')
-                # Add the imported module's descriptor to the effectmods array.
-                effectmods.append(mymod)
+        # OK, make up the module name for importing
+        # Stick a period (.) at the start of the module name.
+        effect_modnames = (f".{fname[:-3]}" for fname in valid_fnames)
+        
+        # Now, import that puppy!!!!
+        # Add the imported modules descriptor to the effectmods array.
+        effectmods += [importlib.import_module(modname, package='effects')
+            for modname in effect_modnames]
 
     # Initialise pygame
     pg.init()
@@ -137,12 +133,8 @@ def main():
     my_canvas = screen.copy()
 
     # Generate a field of stars in the far background
-    back_stars = []
-    # Make up a cluster of 100 randomly generated stars.
-    for tmp_i in range(0, 101):
-        tmpx = int(random.random() * 600) - 75
-        tmpy = int(random.random() * 600) - 75
-        back_stars.append((tmpx, tmpy))
+    back_stars = [(int(random.random() * 600) - 75, int(random.random() * 600) - 75)
+        for _ in range(0, 101)]
 
     # Initialise pygame's music library, set the volume to be "not too loud!"
     mixer.init()
