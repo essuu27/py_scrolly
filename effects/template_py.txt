@@ -1,0 +1,17 @@
+import pygame as pg
+import config
+
+def effect(my_canvas, text_img):
+
+    # go through the text message image, one slice at a time
+    for my_x in range(0, config.scrollwid, config.SLICE_SIZE):
+        # my_x is the X-coord/position within the text image
+        # my_xy is the XY co-ords of the canvas where the current 
+        # text 'slice' will be blitted
+
+        # source_area is the current slice of the text image
+        source_area = pg.Rect((my_x, 0), (config.SLICE_SIZE, config.imghgt))
+
+        my_canvas.blit(text_img, my_xy, source_area)
+    
+    return my_canvas, text_img
