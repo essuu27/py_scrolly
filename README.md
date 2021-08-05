@@ -28,7 +28,7 @@ Using py_scrolly is pretty easy to do. Provided the module dependencies are inst
 
 On starting up, py_scrolly will open a window *[1]* on your system’s desktop showing a line of text scrolling, right to left, across the screen. When the line of text scrolls off the left-hand end of the screen the next line of text will start scrolling, right to left, across the screen.
 
-*[1]*: While the py_scrolly.py can provide a fullscreen display it is designed to start up with windowed output. Pressing the ‘f’ key kicks the output into, and out of fullscreen mode.
+*[1]* While the py_scrolly.py can provide a fullscreen display it is designed to start up with windowed output. Pressing the ‘f’ key kicks the output into, and out of fullscreen mode.
 
 Each line of text will be displayed using a different animation ‘effect’. Currently, the effects that are available to py_scrolly are:
 
@@ -106,7 +106,7 @@ The initial targets for this script were just to get a python script up and runn
 There are also "failsafe" routines in the code. These do things like trap if there is no file containing the text messages or, there is no music file (an MP3) to play. It also is designed to use a certain font to display the messages. That font is supplied with the script and is open source. The script will check to see if the font is  already installed on the system. If it is not then the script will access the font direct from the file, without installing it to your system.
 
 ## Credits
-[PyGame] (https:pygame.org)
+[PyGame] (https://pygame.org)
 The PyGame module provides the engine to this script. It was chosen as I was looking for a module that would provide "easy to use" graphics functions that wouldn't requite installing too many addtional dependencies. PyGame provides just about everything in one install. It also supplies easy to use MP3 player functions, as well.
 
 [U4iaF8 Mods] (https://modarchive.org/index.php?request=view_profile&query=69242)
