@@ -1,7 +1,7 @@
 """A minor reworking of the wonderful code supplied by GitHub:Magoninho"""
 import pygame
 import numpy as np
-from math import *
+from math import (sin, cos)
 import config
 
 
