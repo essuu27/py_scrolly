@@ -1,4 +1,4 @@
-"""A minor reworking of the wonderful code supplied by XXX YYY"""
+"""A minor reworking of the wonderful code supplied by GitHub:Magoninho"""
 import pygame
 import numpy as np
 from math import *
