@@ -86,7 +86,7 @@ def main():
 
 # Go through the modnames array
     effectmods = [importlib.import_module(modname, package='effects')
-        for modname in modnames]
+                  for modname in modnames]
 
     # The 'effects' directory holds any 'extra' text effects. Find them
     # and load them dynamically.
@@ -98,7 +98,7 @@ def main():
 
         # List all the effects files in my_cwd.
         valid_fnames = filter(lambda fname: fname.endswith('.py'),
-            os.listdir(my_effdir))
+                              os.listdir(my_effdir))
 
         # OK, make up the module name for importing
         # Stick a period (.) at the start of the module name.
@@ -107,7 +107,7 @@ def main():
         # Now, import that puppy!!!!
         # Add the imported modules descriptor to the effectmods array.
         effectmods += [importlib.import_module(modname, package='effects')
-            for modname in effect_modnames]
+                       for modname in effect_modnames]
 
     # Initialise pygame
     pg.init()
@@ -135,8 +135,9 @@ def main():
     my_canvas = screen.copy()
 
     # Generate a field of stars in the far background
-    back_stars = [(int(random.random() * 600) - 75, int(random.random() * 600) - 75)
-        for _ in range(0, 101)]
+    back_stars = [(int(random.random() * 600) - 75,
+                  int(random.random() * 600) - 75)
+                  for _ in range(0, 101)]
 
     # Initialise pygame's music library, set the volume to be "not too loud!"
     mixer.init()
@@ -273,7 +274,7 @@ def main():
         if footer_on:
             footer(my_canvas, font2)
 
-        hotzone = my_canvas.blit(bragtext,(360,480))
+        hotzone = my_canvas.blit(bragtext, (360, 480))
 
         # Now handle any user input
         for event in pg.event.get():
@@ -323,7 +324,7 @@ def main():
                 mouse_hide = False
                 pg.mouse.set_visible(True)
 
-            ## if mouse pressed get pos. of cursor in screen coords##
+            # if mouse pressed get pos. of cursor in screen coords##
             if event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
                 # Get current screen width and height
                 scr_w, scr_h = pg.display.get_surface().get_size()
@@ -334,8 +335,8 @@ def main():
                 mouse_y = int((mouse_y / scr_h) * 500)
                 # Repack the mouse coord tuple
                 pos = (mouse_x, mouse_y)
-                
-                ## Check if mouse pointer is in our 'hotzone'
+
+                # Check if mouse pointer is in our 'hotzone'
                 if hotzone.collidepoint(pos):
                     # It is, so launch a web browser.
                     webbrowser.open('https://github.com/essuu27/py_scrolly')
