@@ -14,6 +14,7 @@ import sys
 import importlib
 import glob
 import random
+import webbrowser
 
 import pygame as pg
 from pygame import (mixer, DOUBLEBUF, RESIZABLE)
@@ -127,6 +128,7 @@ def main():
 
     # Get fullscreen info
     screen_info = pg.display.Info()
+
     # Set up the starting draw surface
     # 'screen' is displayed Surface, 'my_canvas' is the Surface to be drawn to.
     screen = pg.display.set_mode([500, 500], DOUBLEBUF | RESIZABLE)
@@ -165,7 +167,9 @@ def main():
             font1 = pg.font.Font("Rubik.ttf", 48)
         else:
             # OK, can't find a system font or a font file. Use a default font
-            font1 = pg.font.SysFont("Gadugi", 48)
+            font1 = pg.font.SysFont("Lucida", 48)
+
+    font3 = pg.font.SysFont("Lucida", 22)
 
     # Load a system font to render the footer menu
     font2 = pg.font.SysFont("Gadugi", 24)
@@ -177,6 +181,11 @@ def main():
 
     # Make up the first line of graphical text
     text_img = font1.render(msg_txt, False, config.COLBLUE)
+
+    font3.set_underline(True)
+    bragtext = font3.render('GitHub:@essuu27', False, config.COLRED)
+    font3.set_underline(False)
+
     # config.scrollwid holds how much horizontal distance is left until
     # the end of message line
     config.scrollwid = text_img.get_size()[0]
@@ -264,6 +273,8 @@ def main():
         if footer_on:
             footer(my_canvas, font2)
 
+        hotzone = my_canvas.blit(bragtext,(360,480))
+
         # Now handle any user input
         for event in pg.event.get():
             # Was a 'quit' event raised?
@@ -311,6 +322,23 @@ def main():
                 mouse_time = now_time
                 mouse_hide = False
                 pg.mouse.set_visible(True)
+
+            ## if mouse pressed get pos. of cursor in screen coords##
+            if event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
+                # Get current screen width and height
+                scr_w, scr_h = pg.display.get_surface().get_size()
+                # Mouse coords are returned in real world values
+                mouse_x, mouse_y = event.pos
+                # Scale mouse coords from real world vals to surface frame
+                mouse_x = int((mouse_x / scr_w) * 500)
+                mouse_y = int((mouse_y / scr_h) * 500)
+                # Repack the mouse coord tuple
+                pos = (mouse_x, mouse_y)
+                
+                ## Check if mouse pointer is in our 'hotzone'
+                if hotzone.collidepoint(pos):
+                    # It is, so launch a web browser.
+                    webbrowser.open('https://github.com/essuu27/py_scrolly')
 
         # If the mouse pointer doesn't move for 10 seconds, hide it
         if mouse_hide is False and (now_time - mouse_time) > 10:
