@@ -116,4 +116,4 @@ Just having the eye candy of jiggling, wiggly text scrolling across a screen is 
 The scrolling text is rendered in the Rubik font. This font is available from Google:Fonts on an Open Fonts licence.
 
 [GitHub:Magoninho] (https://github.com/Magoninho/3D-projection-tutorial/blob/main/projection.py)
-Magoninho gives an easy to understand script for doing 3D projections. The cube_rotate.py module is based largely on his code. There is some reworking on the work to make it work as a module and also so that it renders to the proper surface in the py_scrolly setup. A big 'Thank you' to them for making this code available.
+Magoninho gives an easy to understand script for doing 3D projections. The cube_rotate.py module is based largely on his code. There is some reworking to make it work as a module and also so that it renders to the proper surface in the py_scrolly setup. A big 'Thank you' to them for making this code available.
