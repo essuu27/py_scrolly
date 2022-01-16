@@ -34,10 +34,7 @@ def cube_rotate(my_canvas):
     ])
     config.angle += 0.01
 
-    # drawing stuff
-
-    i = 0
-    for point in config.points:
+    for i, point in enumerate(config.points):
         rotated2d = np.dot(rotation_z, point.reshape((3, 1)))
         rotated2d = np.dot(rotation_y, rotated2d)
         rotated2d = np.dot(rotation_x, rotated2d)
@@ -48,8 +45,6 @@ def cube_rotate(my_canvas):
         y = int(projected2d[1][0] * config.scale) + config.cent_xy[1]
 
         config.projected_points[i] = [x, y]
-        i += 1
-
     for p in range(4):
         connect_points(my_canvas, p, (p + 1) % 4, config.projected_points)
         connect_points(my_canvas,
