@@ -56,9 +56,8 @@ def screendrift(screen_x, screen_y):
 # print the messages at the bottom(foot) of the screen
 def footer(my_canvas, font2):
     """Prints the command menu at the foot of the screen"""
-    # Compose the first/top line of the footer message
-    footmsg = '[f]ullscreen on/off '
-    footmsg = footmsg + '[m]ute [q]uit'
+    footmsg = '[f]ullscreen on/off ' + '[m]ute [q]uit'
+
     # 'Draw' the text as a graphical 'Surface'
     text = font2.render(footmsg, True, config.COLRED)
     # Find XY dimensions of 'text', centre on X-axis and move it on the Y
@@ -67,9 +66,7 @@ def footer(my_canvas, font2):
     # Now blast/blit the 'text' Surface onto 'my_canvas' Surface
     my_canvas.blit(text, text_rect)
 
-    # Reuse the footmsg variable to make up the next line of text to display.
-    footmsg = '[space] pause scrolling '
-    footmsg = footmsg + '[bkspc] hide menu'
+    footmsg = '[space] pause scrolling ' + '[bkspc] hide menu'
 
     # Render the footmsg into the 'text' Surface
     text = font2.render(footmsg, False, config.COLRED)

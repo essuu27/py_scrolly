@@ -1,5 +1,6 @@
 """starstream(): Handles the movement of the stars streaming from the centre
 of the screen."""
+
 import math
 import pygame as pg
 import config
@@ -7,7 +8,7 @@ from newstar import *
 
 # Generate a starting group of stars
 stars = []
-for i in range(0, config.NUM_STARS):
+for _ in range(config.NUM_STARS):
     (s_r1, s_r2, s_r3, s_r4, s_r5) = newstar()
     stars.append([s_r1, s_r2, s_r3, s_r4, s_r5])
 
@@ -17,7 +18,7 @@ def starstream(my_canvas, screen_x, screen_y):
     screen_x = screen_x + int(my_canvas.get_width() / 2)
     screen_y = screen_y + int(my_canvas.get_height() / 2) - 250
     # Step through the array of stars[]
-    for i in range(0, config.NUM_STARS):
+    for i in range(config.NUM_STARS):
         # starang is the angle (in radians) of travel from the centre of the screen
         starang = stars[i][0]
         # starrad is the 'radius'/'distance' of the 'star' from the screen centre
