@@ -24,7 +24,7 @@ These modules can be installed using pip, if needed:
 
 Using py_scrolly is pretty easy to do. Provided the module dependencies are installed then launching py_scrolly is as easy as typing:
 
-`python py_scrolly.py`
+`python main.py`
 
 ….but you knew that already, right?
 
