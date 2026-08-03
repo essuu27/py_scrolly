@@ -132,9 +132,15 @@ def main():
     my_canvas = screen.copy()
 
     # Generate a field of stars in the far background
-    back_stars = [(int(random.random() * 600) - 75,
-                  int(random.random() * 600) - 75)
-                  for _ in range(101)]
+    # back_stars = [(int(random.random() * 600) - 75,
+    #              int(random.random() * 600) - 75)
+    #              for _ in range(0, 101)]
+
+    # Make a bunch of background stars
+    back_stars = []
+    for _ in range(0, 101):
+        back_stars.append((random.randint(1, 600) - 75,
+                          random.randint(1, 600) - 75))
 
     # Initialise pygame's music library, set the volume to be "not too loud!"
     mixer.init()
